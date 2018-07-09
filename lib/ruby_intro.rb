@@ -22,19 +22,34 @@ end
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  "Hello, #{name}"
 end
 
 def starts_with_consonant? s
-  # YOUR CODE HERE
+  return false if s.empty? || /\W/.match(s[0])
+  return true unless /\A[a,e,i,o,u]/i.match(s[0])
+  false
 end
 
 def binary_multiple_of_4? s
-  # YOUR CODE HERE
+  return false if /\D/.match(s)
+  return true if /[0,1]/.match(s) && s.to_i % 4 == 0
+  false
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  attr_accessor :isbn
+  attr_accessor :price
+
+  def initialize(isbn, price)
+    raise ArgumentError if isbn.empty? || price <= 0
+    @isbn = isbn
+    @price = price
+  end
+
+  def price_as_string
+    "$#{'%.2f' % @price}"
+  end
 end
